@@ -16,7 +16,7 @@ const StyledNavLink = styled(Link)(({ theme }) => ({
 
 const Footer = () => {
   return (
-    <Box py={8} textAlign="center">
+    <Box py={8}>
       <H6>
         Developed with 💗 & Care by <a href="https://ui-lib.com/">UI Lib</a>
       </H6>
