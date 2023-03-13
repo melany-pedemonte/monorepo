@@ -38,7 +38,7 @@ const LayoutV2: FC = ({ }) => {
           setShowSideBar={handleToggleSidebar}
           setShowMobileSideBar={() => setShowMobileSideBar((state) => !state)}
         />
-        {children || <Outlet />}
+         <Outlet />
       </LayoutBodyWrapper>
     </Fragment>
   );
