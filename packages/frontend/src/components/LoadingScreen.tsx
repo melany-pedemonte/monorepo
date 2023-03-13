@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import NProgress from "nprogress";
-import { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
-const LoadingScreen = () => {
+const LoadingScreen: FC = () => {
+  NProgress.configure({ showSpinner: false });
+
   useEffect(() => {
     NProgress.start();
 
@@ -11,14 +13,7 @@ const LoadingScreen = () => {
     };
   }, []);
 
-  return (
-    <Box
-      sx={{
-        backgroundColor: "background.paper",
-        minHeight: "100%",
-      }}
-    />
-  );
+  return <Box />;
 };
 
 export default LoadingScreen;

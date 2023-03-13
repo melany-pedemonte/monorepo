@@ -1,40 +1,33 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { StyledEngineProvider } from "@mui/material/styles";
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
+import RTL from "components/RTL";
+import useSettings from "hooks/useSettings";
 import { FC, ReactNode } from "react";
-import { Toaster } from "react-hot-toast";
-import RTL from "./components/RTL";
-import useSettings from "./hooks/useSettings";
-import { ukoTheme } from "./theme";
+import { useRoutes } from "react-router-dom";
+import routes from "routes";
+import { createCustomTheme } from "theme";
+import "./i18n";
 
 type AppProps = {
-  children: ReactNode;
-};
+  children?: ReactNode;
+}
 
-const App: FC<AppProps> = ({ children }) => {
+const App: FC<AppProps> = ({children}) => {
+  const content = useRoutes(routes());
   const { settings } = useSettings();
 
-  // App theme
-  const appTheme = ukoTheme({
+  const theme = createCustomTheme({
     theme: settings.theme,
     direction: settings.direction,
     responsiveFontSizes: settings.responsiveFontSizes,
   });
 
-  // toaster options
-  const toasterOptions = {
-    style: {
-      fontWeight: 500,
-      fontFamily: "'Montserrat', sans-serif",
-    },
-  };
-
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={appTheme}>
-        <RTL direction={appTheme.direction}>
+      <ThemeProvider theme={theme}>
+        <RTL>
           <CssBaseline />
-          <Toaster toastOptions={toasterOptions} />
-          {children}
+          {content}
         </RTL>
       </ThemeProvider>
     </StyledEngineProvider>
